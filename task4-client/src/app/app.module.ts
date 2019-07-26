@@ -7,10 +7,14 @@ import {MatCardModule, MatSelectModule, MatToolbarModule,MatFormFieldModule, Mat
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
+import { TodoListComponent } from './todo-list/todo-list.component';
+import { TodoComponent } from './todo/todo.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TodoListComponent,
+    TodoComponent
   ],
   imports: [
     BrowserModule,

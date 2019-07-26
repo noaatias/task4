@@ -1,0 +1,6 @@
+<div class="todos">
+    <div *ngFor="let todo of this.store.todos" class="todo-wrapper">
+      <app-todo [todo]="todo"></app-todo>
+    </div>
+  </div>
+  

@@ -1,29 +1,43 @@
 var express = require('express');
 var router = express.Router();
-const { Task } = require('../models/Task');
-const { Member } = require('../models/Member');
+const {
+    Task
+} = require('../models/Task');
+const {
+    Member
+} = require('../models/Member');
 
 router.get('/', async function (req, res, next) {
-    let newtodos=[];
-    const todo = await Task.find().select({ descriptionOfTask: 1, date: 1, idOfFamilyMember: 1}).exec();
+    let newtodos = [];
+    const todo = await Task.find().select({
+        descriptionOfTask: 1,
+        date: 1,
+        idOfFamilyMember: 1
+    }).exec();
     console.log(todo[0].idOfFamilyMember)
-const members = await Member.find().select({_id:1,name:1}).exec();
-let i=0
-todo.map(one=>{
-for (let index = 0; index < members.length; index++) {
-    if(one.idOfFamilyMember==members[i]._id){
-        newtodos=[...newtodos,{descriptionOfTask:one.descriptionOfTask,date:one.date,name:members[i].name}]
-        
-            }    
-}
+    const members = await Member.find().select({
+        _id: 1,
+        name: 1
+    }).exec();
+    todo.map(one => {
+        for (let index = 0; index < members.length; index++) {
+            if (one.idOfFamilyMember == members[index]._id) {
+                newtodos = [...newtodos, {
+                    descriptionOfTask: one.descriptionOfTask,
+                    date: one.date,
+                    name: members[index].name
+                }]
 
-})
+            }
+        }
 
-console.log(newtodos)
+    })
+
+    console.log(newtodos)
 
     res.send(newtodos);
 
-});  
+});
 
 // router.get('/:id', async function (req, res, next) {
 //     const { id } = req.params;
@@ -36,16 +50,42 @@ console.log(newtodos)
 // });
 
 
-// router.post('/', async (req, res) => {
-//    const {name, price, type, rooms, image, amenities} = req.body;
-//    const apartment = new Apartment({name, price, type, rooms, image, amenities});
-//    try {
-//        const document = await apartment.save();
-//        res.status(200).send(document);
-//    } catch (e) {
-//         res.status(400).send(e);
-//    }
-// });
+router.post('/', async (req, res) => {
+    const {
+        descriptionOfTask,
+        date,
+        name
+    } = req.body;
+    console.log(descriptionOfTask,date,name)
+    let idOfFamilyMember='';
+    const members = await Member.find().select({
+        _id: 1,
+        name: 1
+    }).exec();
+    let i = 0
+    members.map(one => {
+        
+            if (one.name == name) {
+                idOfFamilyMember = one._id;
+            
+        }
+
+    })
+    const task = new Task({
+        descriptionOfTask,
+        date,
+        idOfFamilyMember,
+        
+       
+    });
+    console.log(task)
+    try {
+        const document = await task.save();
+        res.status(200).send(document);
+    } catch (e) {
+        res.status(400).send(e);
+    }
+});
 // router.delete('/:id', async function (req, res, next) {
 //     const { id } = req.params;
 //     try {
