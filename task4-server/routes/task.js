@@ -1,10 +1,28 @@
 var express = require('express');
 var router = express.Router();
 const { Task } = require('../models/Task');
+const { Member } = require('../models/Member');
 
 router.get('/', async function (req, res, next) {
+    let newtodos=[];
     const todo = await Task.find().select({ descriptionOfTask: 1, date: 1, idOfFamilyMember: 1}).exec();
-    res.send(todo);
+    console.log(todo[0].idOfFamilyMember)
+const members = await Member.find().select({_id:1,name:1}).exec();
+let i=0
+todo.map(one=>{
+for (let index = 0; index < members.length; index++) {
+    if(one.idOfFamilyMember==members[i]._id){
+        newtodos=[...newtodos,{descriptionOfTask:one.descriptionOfTask,date:one.date,name:members[i].name}]
+        
+            }    
+}
+
+})
+
+console.log(newtodos)
+
+    res.send(newtodos);
+
 });  
 
 // router.get('/:id', async function (req, res, next) {
