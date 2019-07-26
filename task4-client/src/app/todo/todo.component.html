@@ -1,7 +1,14 @@
-<td>{{ todo.descriptionOfTask }}</td>
-<td>{{ todo.date }}</td>
-<td>{{ todo.name }}</td>
-<td>
-  <button mat-raised-button type="button" routerLink="" (click)="onDelete(todo._id)"
-    color="warn">delete</button>
-</td>
+
+
+<mat-card class="todo">
+        <mat-card-header>
+          <mat-card-title> {{todo.descriptionOfTask | uppercase}}</mat-card-title>
+          <mat-card-subtitle>date created :{{todo.date}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>by:{{todo.name}}</p>
+        </mat-card-content>
+        <button mat-raised-button type="button" routerLink="" (click)="onDelete(todo._id)"
+        color="warn">delete</button>
+      </mat-card>
+      

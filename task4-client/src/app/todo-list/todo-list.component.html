@@ -1,11 +1,5 @@
-<div >
-    <table class="todos">
-        <tr *ngFor="let todo of this.store.todos">
-            <app-todo [todo]="todo"></app-todo>
-    
-        </tr>
-      </table>
-  </div>
-
-  
-  
+<div class="todos">
+        <div *ngFor="let todo of this.store.todos" class="todo-wrapper">
+          <app-todo [todo]="todo"></app-todo>
+        </div>
+      </div>
