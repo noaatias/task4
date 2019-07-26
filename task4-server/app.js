@@ -6,6 +6,7 @@ const cors = require('cors');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var taskRouter = require('./routes/task');
+var memberRouter = require('./routes/member');
 
 const mongoose = require('mongoose');
 const URL = 'mongodb://localhost:27017/task4';
@@ -22,5 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/task', taskRouter);
+app.use('/member', memberRouter);
 
 module.exports = app;

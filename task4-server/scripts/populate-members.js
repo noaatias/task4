@@ -1,4 +1,4 @@
-db.familyMembers.insertMany([
+db.members.insertMany([
     {
         name:'yosi atias',
         nickName:'dadush',
