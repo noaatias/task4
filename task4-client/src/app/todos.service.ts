@@ -13,4 +13,7 @@ export class TodosService {
   getTodoListFromServer(): Observable<Todo[]> {
     return this.httpClient.get<Todo[]>(`http://localhost:3000/task/`);
 }
+addTodoToServer(todo: Todo): Observable<Todo> {
+  return this.httpClient.post<Todo>(`http://localhost:3000/task/`, todo);
+}
 }

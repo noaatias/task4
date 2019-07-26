@@ -9,12 +9,14 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoComponent } from './todo/todo.component';
+import { NewTodoComponent } from './new-todo/new-todo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
-    TodoComponent
+    TodoComponent,
+    NewTodoComponent
   ],
   imports: [
     BrowserModule,

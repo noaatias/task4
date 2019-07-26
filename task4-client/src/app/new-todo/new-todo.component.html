@@ -1,0 +1,21 @@
+<div class="container">
+    <form class="form" (ngSubmit)="submitTodo()" [formGroup]="todoForm">
+      <h3 class="title">ADD TODO</h3>
+      <mat-form-field class="full-width">
+        <input matInput color="accent" placeholder="description" type="text" formControlName="descriptionOfTask" MatFormFieldControl="descriptionOfTask" />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="date" type="date" formControlName="date" MatFormFieldControl="date" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>name</mat-label>
+        <mat-select formControlName="name" MatFormFieldControl="name">
+          <mat-option *ngFor="let member of store.members" [value]="member.name">
+            {{ member.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+              <button  mat-raised-button type="submit"  color="accent">SAVE</button>
+    
+    </form>
+    </div>

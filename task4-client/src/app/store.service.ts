@@ -59,6 +59,14 @@ export class StoreService {
     get members(): Member[] {
       return this.currentState.members;
   }
+  addTodo(todo: Todo) {
+    return this.todoService.addTodoToServer(todo).subscribe(todoFromServer => {
+      // it's important to add the movieForm retrieved from the server cause it contains the server-generated id!
+      this.setState({
+        todos: this.todos.concat(todoFromServer),
+      });
+    });
+  }
     // getApartmentById(id: string) {
     //     this.apartmentService.getApartmentDetailsFromServer(id).subscribe(apartment => {
     //         this.setState({

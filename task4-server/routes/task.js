@@ -38,6 +38,15 @@ router.get('/', async function (req, res, next) {
     res.send(newtodos);
 
 });
+router.delete('/:id', async function (req, res, next) {
+    const { id } = req.params;
+    try {
+        const task = await Task.deleteOne({"_id":id});
+        res.send(task)
+    } catch (e) {
+        res.status(404).send('not found');
+    }
+});
 
 // router.get('/:id', async function (req, res, next) {
 //     const { id } = req.params;
