@@ -15,7 +15,6 @@ export class NewTodoComponent implements OnInit {
 
   todoForm = this.fb.group({
     descriptionOfTask: ['', Validators.required],
-    date: ['', [Validators.required]],
     name: ['', Validators.required],
     
   });
@@ -28,7 +27,10 @@ export class NewTodoComponent implements OnInit {
 
   submitTodo() {
     console.log(this.todoForm.value)
-    this.store.addTodo(this.todoForm.value).add(() => {
+    const newtodoForm={...this.todoForm.value,date:new Date(Date.now())}
+    console.log(newtodoForm)
+
+    this.store.addTodo(newtodoForm).add(() => {
       // navigate to home page when movie has been added
       this.router.navigateByUrl('');
     });

@@ -61,11 +61,24 @@ export class StoreService {
   }
   addTodo(todo: Todo) {
     return this.todoService.addTodoToServer(todo).subscribe(todoFromServer => {
+      console.log(todoFromServer)
+      const newtodoFromServer={...todoFromServer,date:new Date(Date.now())}
+      console.log(newtodoFromServer)
+
       // it's important to add the movieForm retrieved from the server cause it contains the server-generated id!
       this.setState({
         todos: this.todos.concat(todoFromServer),
       });
     });
+  }
+
+  deleteTodo(id: string) {
+    console.log("delete store")
+     this.todoService.deleteTodoFromServer(id).subscribe(
+      todo => console.log('todo'),
+      error => console.log('Error: ', error),
+      () => console.log('finished')
+     );
   }
     // getApartmentById(id: string) {
     //     this.apartmentService.getApartmentDetailsFromServer(id).subscribe(apartment => {

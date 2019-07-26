@@ -23,6 +23,7 @@ router.get('/', async function (req, res, next) {
         for (let index = 0; index < members.length; index++) {
             if (one.idOfFamilyMember == members[index]._id) {
                 newtodos = [...newtodos, {
+                    _id:one._id,
                     descriptionOfTask: one.descriptionOfTask,
                     date: one.date,
                     name: members[index].name

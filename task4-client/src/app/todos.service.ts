@@ -16,4 +16,8 @@ export class TodosService {
 addTodoToServer(todo: Todo): Observable<Todo> {
   return this.httpClient.post<Todo>(`http://localhost:3000/task/`, todo);
 }
+deleteTodoFromServer(id): Observable<Todo> {
+  console.log("delete from server")
+  return this.httpClient.delete<Todo>(`http://localhost:3000/task/${id}`);
+}
 }
